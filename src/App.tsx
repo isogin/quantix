@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
 
-function App() {
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import ProblemSettingScreen from './screens/ProblemSettingScreen';  // 問題設定画面をインポート
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* ルート "/" でホーム画面を表示 */}
+        <Route path="/" element={<HomeScreen />} />
+        {/* 問題設定画面へのルート */}
+        <Route path="/problem-setting" element={<ProblemSettingScreen />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
