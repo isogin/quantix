@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProblemSettingScreen from './screens/ProblemSettingScreen';  // 問題設定画面をインポート
-import DataOverviewScreen from './screens/DataOverviewScreen';
+import DataOverviewScreen from './screens/DataOverviewScreen/DataOverviewScreen';
 
 const App: React.FC = () => {
   return (
