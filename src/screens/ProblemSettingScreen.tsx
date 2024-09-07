@@ -1,8 +1,9 @@
 // src/screens/ProblemSettingScreen.tsx
 
 import React from 'react';
-import { Container, Button, Typography } from '@mui/material';
+import { Container, Button, Typography, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const ProblemSettingScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -11,12 +12,20 @@ const ProblemSettingScreen: React.FC = () => {
     navigate('/data-overview'); // データ選択画面に遷移
   };
 
+  // 戻るボタンの処理
+  const handleBack = () => {
+    navigate(-1); // 1つ前の画面に戻る
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
       {/* ヘッダー */}
-      <header className="bg-blue-600 text-white p-4">
-        <Typography variant="h4" className="text-center font-bold">
-          QuantiX - 成績分析アプリ
+      <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <IconButton color="inherit" onClick={handleBack}>
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography variant="h4" className="text-center font-bold flex-grow">
+          QuantiX - 問題
         </Typography>
       </header>
 

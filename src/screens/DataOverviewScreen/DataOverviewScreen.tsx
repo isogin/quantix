@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Button, Typography, Grid } from '@mui/material';
+import { Container, Button, Typography, Grid, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { usePapaParse } from 'react-papaparse';
 import Graph from './Graph';
@@ -8,12 +8,22 @@ import StatsButtons from './StatsButtons';
 import StatsDisplay from './StatsDisplay';
 import FrequencyTable from './FrequencyTable';
 import { StudentData } from './types';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const DataOverviewScreen: React.FC = () => {
   const navigate = useNavigate();
   const [studentData, setStudentData] = useState<StudentData[]>([]);
-  const [xAxis, setXAxis] = useState<string[]>([]); // X軸のデータ選択
-  const [yAxis, setYAxis] = useState<string[]>([]); // Y軸のデータ選択
+
+  // 各コンポーネントに個別のデータ選択状態を追加 (string[] 型で初期化)
+  const [distributionXAxis, setDistributionXAxis] = useState<string[]>([]); // 度数分布表用のX軸データ
+  const [distributionYAxis, setDistributionYAxis] = useState<string[]>([]); // 度数分布表用のY軸データ
+  const [graphXAxis, setGraphXAxis] = useState<string[]>([]); // グラフ用のX軸データ
+  const [graphYAxis, setGraphYAxis] = useState<string[]>([]); // グラフ用のY軸データ
+  const [statsXAxis, setStatsXAxis] = useState<string[]>([]); // 統計用のX軸データ
+  const [statsYAxis, setStatsYAxis] = useState<string[]>([]); // 統計用のY軸データ
+  const [correlationXAxis, setCorrelationXAxis] = useState<string[]>([]); // 相関用のX軸データ
+  const [correlationYAxis, setCorrelationYAxis] = useState<string[]>([]); // 相関用のY軸データ
+
   const [xMedian, setXMedian] = useState<number | null>(null);
   const [yMedian, setYMedian] = useState<number | null>(null);
   const [xMean, setXMean] = useState<number | null>(null);
@@ -21,6 +31,7 @@ const DataOverviewScreen: React.FC = () => {
   const [xVariance, setXVariance] = useState<number | null>(null);
   const [yVariance, setYVariance] = useState<number | null>(null);
   const [correlation, setCorrelation] = useState<number | null>(null);
+  
   const { readString } = usePapaParse();
 
   const parseCsvData = (csvData: string) => {
@@ -44,55 +55,106 @@ const DataOverviewScreen: React.FC = () => {
   }, []);
 
   const handleNext = () => {
-    navigate('/data-exploration');
+    navigate('/answer');
+  };
+
+  // 戻るボタンの処理
+  const handleBack = () => {
+    navigate(-1); // 1つ前の画面に戻る
   };
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
-      <header className="bg-blue-600 text-white p-4">
-        <Typography variant="h4" className="text-center font-bold">
-          QuantiX - データ概要
+      {/* ヘッダー */}
+      <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <IconButton color="inherit" onClick={handleBack}>
+          <ArrowBackIcon />
+        </IconButton>
+        <Typography variant="h4" className="text-center font-bold flex-grow">
+          QuantiX - データ分析
         </Typography>
       </header>
 
       <main className="flex-grow flex items-center justify-center">
         <Container maxWidth="lg" className="bg-white rounded-lg shadow-lg p-8">
           <Typography variant="h5" gutterBottom className="text-gray-800 font-bold">
-            データ選択画面
+            度数分布表
           </Typography>
 
-          {/* X軸のデータ選択 */}
-          <DataSelection axis={xAxis} setAxis={setXAxis} isXAxis={true} />
-
-          {/* Y軸のデータ選択 */}
-          <DataSelection axis={yAxis} setAxis={setYAxis} isXAxis={false} />
+          {/* 度数分布表用のデータ選択 */}
+          <DataSelection 
+            axis={distributionXAxis} 
+            setAxis={setDistributionXAxis} 
+            isXAxis={true} 
+          />
+          <DataSelection 
+            axis={distributionYAxis} 
+            setAxis={setDistributionYAxis} 
+            isXAxis={false} 
+          />
 
           <Grid container spacing={2} className="mt-4">
             <Grid item xs={6}>
-              {xAxis.length > 0 && (
+              {distributionXAxis.length > 0 && (
                 <FrequencyTable
                   title="X軸の度数分布"
-                  axis={xAxis}  // X軸も string[] に変更
-                  studentData={studentData.map((student) => student[xAxis[0] as keyof StudentData])}
+                  axis={distributionXAxis}
+                  studentData={studentData.map((student) => 
+                    student[distributionXAxis[0] as keyof StudentData]
+                  )}
                 />
               )}
             </Grid>
             <Grid item xs={6}>
-              {yAxis.length > 0 && (
+              {distributionYAxis.length > 0 && (
                 <FrequencyTable
                   title="Y軸の度数分布"
-                  axis={yAxis}  // string[] 型をそのまま渡す
-                  studentData={studentData.map((student) => student[yAxis[0] as keyof StudentData])}
+                  axis={distributionYAxis}
+                  studentData={studentData.map((student) => 
+                    student[distributionYAxis[0] as keyof StudentData]
+                  )}
                 />
               )}
             </Grid>
           </Grid>
 
-          <Graph studentData={studentData} xAxis={xAxis} yAxis={yAxis} />
+          <Typography variant="h5" gutterBottom className="text-gray-800 font-bold">
+            グラフ表示
+          </Typography>
+
+          {/* グラフ用のデータ選択 */}
+          <DataSelection 
+            axis={graphXAxis} 
+            setAxis={setGraphXAxis} 
+            isXAxis={true} 
+          />
+          <DataSelection 
+            axis={graphYAxis} 
+            setAxis={setGraphYAxis} 
+            isXAxis={false} 
+          />
+
+          <Graph studentData={studentData} xAxis={graphXAxis} yAxis={graphYAxis} />
+
+          <Typography variant="h5" gutterBottom className="text-gray-800 font-bold">
+            各種データ解析
+          </Typography>
+
+          {/* 統計用のデータ選択 */}
+          <DataSelection 
+            axis={statsXAxis} 
+            setAxis={setStatsXAxis} 
+            isXAxis={true} 
+          />
+          <DataSelection 
+            axis={statsYAxis} 
+            setAxis={setStatsYAxis} 
+            isXAxis={false} 
+          />
 
           <StatsButtons
-            xAxis={xAxis[0]} // X軸の最初のデータを使う
-            yAxis={yAxis}
+            xAxis={statsXAxis[0]} // X軸の最初のデータを使う
+            yAxis={statsYAxis} // Y軸の最初のデータを使う
             studentData={studentData}
             setXMedian={setXMedian}
             setYMedian={setYMedian}
@@ -113,6 +175,19 @@ const DataOverviewScreen: React.FC = () => {
             correlation={correlation}
           />
 
+          {/* 相関関数用のデータ選択 */}
+          <DataSelection 
+            axis={correlationXAxis} 
+            setAxis={setCorrelationXAxis} 
+            isXAxis={true} 
+          />
+          <DataSelection 
+            axis={correlationYAxis} 
+            setAxis={setCorrelationYAxis} 
+            isXAxis={false} 
+          />
+
+          {/* 次へ進むボタン */}
           <Button
             variant="contained"
             color="primary"
