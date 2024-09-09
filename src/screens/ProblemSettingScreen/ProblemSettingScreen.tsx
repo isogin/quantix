@@ -57,12 +57,13 @@ const ProblemSettingScreen: React.FC = () => {
             課題: 数学の成績が低下しました
           </Typography>
           <Typography variant="body1" className="mb-8 text-gray-600">
-            今学期、数学の平均成績が前学期よりも10点低下しました。<br />
-            この原因を見つけ出し、改善策を提案しましょう。
+            今学期、数学の平均成績が前学期よりも6.5点低下しました。<br />
+            そこで各種勉強にまつわるデータを取得しました。 <br />
+            この原因を見つけ出し、改善策を提案しましょう。 <br />
           </Typography>
-          <Typography variant="body2" className="mb-8 text-gray-500">
+          <Typography variant="body2" className="mb-8 text-gray-500 pt-4">
             分析の流れ: <br />
-            データ探索 → 仮説設定 → 仮説検証 → 解決策提案
+            データ探索 → 仮説設定 → 仮説検証 → 要因解明
           </Typography>
           <div className='w-full flex items-center justify-center mt-8'>
             <Button

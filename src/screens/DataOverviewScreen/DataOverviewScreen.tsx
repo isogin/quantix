@@ -42,7 +42,10 @@ const DataOverviewScreen: React.FC = () => {
         const filteredData = results.data.filter(student => {
           // すべてのカラムがnullまたはundefinedでないことを確認
           return Object.values(student).some(value => value !== null && value !== undefined);
-        });
+        }).map(student => ({
+          ...student,
+          GradeDifference: student['Current Semester Score'] - student['Last Semester Score'], // 成績差を計算
+        }));
   
         setStudentData(filteredData); // フィルタリング後のデータをセット
         console.log('Parsed and Filtered CSV Data:', filteredData);

@@ -43,7 +43,7 @@ const HomeScreen: React.FC = () => {
         </div>
         <Container maxWidth="md" className="text-center bg-white rounded-lg shadow-lg p-10">
           <Typography variant="h4" gutterBottom className="mb-8 text-gray-800 font-bold">
-            成績分析アプリ
+            データ分析アプリ
           </Typography>
           <Typography variant="body1" className="mb-8 text-gray-600 text-lg">
             データを使って成績低下の理由を分析し<br />解決策を見つけましょう。

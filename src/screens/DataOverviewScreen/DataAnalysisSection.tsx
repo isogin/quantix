@@ -16,7 +16,8 @@ const selectableOptions = [
   { label: '宿題提出率', value: 'Homework Submission Rate' },
   { label: '平日の学習時間', value: 'Weekday Study Hours' },
   { label: '週末の学習時間', value: 'Weekend Study Hours' },
-  { label: '授業理解度', value: 'Class Understanding' }
+  { label: '授業理解度', value: 'Class Understanding' },
+  { label: '成績の変化(今学期-前学期)', value: 'GradeDifference' }
 ];
 
 const DataAnalysisSection: React.FC<DataAnalysisSectionProps> = ({ show, setShow, studentData }) => {

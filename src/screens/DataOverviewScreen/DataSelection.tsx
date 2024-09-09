@@ -18,7 +18,7 @@ const selectableOptions = [
   { label: '平日の学習時間', value: 'Weekday Study Hours' },
   { label: '週末の学習時間', value: 'Weekend Study Hours' },
   { label: '授業理解度', value: 'Class Understanding' },
-  { label: '生徒ごとの値', value: 'Student-wise' }
+  { label: '生徒ごとの値(生徒ID)', value: 'Student-wise' }
 ];
 
 const DataSelection: React.FC<DataSelectionProps> = ({ axis, setAxis, isXAxis }) => {
