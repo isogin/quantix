@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Container, Button, Typography, RadioGroup, FormControlLabel, Radio, Box, Paper, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
+import { Canvas } from '@react-three/fiber';
+import DynamicGradientShape from '../components/DynamicGradientShape';
 
 interface Question {
   question: string;
@@ -47,7 +49,7 @@ const AnswerScreen: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col justify-between">
       {/* ヘッダー */}
-      <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
+      <header className="bg-blue-600 text-white p-4 flex justify-between items-center z-10">
         <IconButton color="inherit" onClick={handleBack}>
           <ArrowBackIcon />
         </IconButton>
@@ -58,7 +60,25 @@ const AnswerScreen: React.FC = () => {
 
       {/* メインコンテンツ */}
       <main className="flex-grow flex items-center justify-center">
-        <Container maxWidth="sm" className="bg-white rounded-lg shadow-lg p-8 mt-4">
+        <div className="absolute top-0 left-0 w-full h-full z-0">
+          <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} />
+            <DynamicGradientShape
+              position={[2,-1,3]}
+              shapeType={1}
+            />
+            <DynamicGradientShape
+              position={[-1,2,3]}
+              shapeType={3}
+            />
+            <DynamicGradientShape
+              position={[-2,-2,3]}
+              shapeType={5}
+            />
+          </Canvas>
+        </div>
+        <Container maxWidth="sm" className="bg-white rounded-lg shadow-lg p-8 mt-4 z-10">
           <Typography variant="h4" className="text-center font-bold mb-4" gutterBottom>
             {question.question}
           </Typography>
@@ -105,7 +125,7 @@ const AnswerScreen: React.FC = () => {
       </main>
 
       {/* フッター */}
-      <footer className="bg-blue-600 text-white text-center p-4">
+      <footer className="bg-blue-600 text-white text-center p-4 z-10">
         <Typography variant="body2">© 2024 QuantiX 成績分析アプリ</Typography>
       </footer>
     </div>

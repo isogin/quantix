@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomeScreen from './screens/HomeScreen';
-import ProblemSettingScreen from './screens/ProblemSettingScreen';  // 問題設定画面をインポート
+import HomeScreen from './screens/HomeScreen/HomeScreen';
+import ProblemSettingScreen from './screens/ProblemSettingScreen/ProblemSettingScreen';  // 問題設定画面をインポート
 import DataOverviewScreen from './screens/DataOverviewScreen/DataOverviewScreen';
 import AnswerScreen from './screens/AnswerScreen/AnswerScreen';
 
