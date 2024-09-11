@@ -28,25 +28,27 @@ const HomeScreen: React.FC = () => {
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
             <RotatingWireframeCube
-              position={[3,2,1]}
+              position={[1.75,1.75,1]}
               shapeType={1}
             />
             <RotatingWireframeCube
-              position={[-3,-2,3]}
-              shapeType={3}
+              position={[-1.75,-1.5,3]}
+              shapeType={2}
             />
             <RotatingWireframeCube
-              position={[-1,2,3]}
-              shapeType={5}
+              position={[-1.25,1.75,3]}
+              shapeType={3}
             />
           </Canvas>
         </div>
         <Container maxWidth="md" className="text-center bg-white rounded-lg shadow-lg p-10">
           <Typography variant="h4" gutterBottom className="mb-8 text-gray-800 font-bold">
-            データ分析アプリ
+            データ分析学習アプリ
           </Typography>
           <Typography variant="body1" className="mb-8 text-gray-600 text-lg">
-            データを使って成績低下の理由を分析し<br />解決策を見つけましょう。
+            データを分析し、課題を解決しよう
+            <br />
+            {"このアプリは 問題 => データ分析 => 回答 の構成になっています"}
           </Typography>
           <div className='w-full flex items-center justify-center mt-8'>
             <Button
@@ -61,11 +63,6 @@ const HomeScreen: React.FC = () => {
           </div>
         </Container>
       </main>
-
-      {/* フッター */}
-      <footer className="bg-blue-600 text-white text-center p-4 z-10 relative">
-        <Typography variant="body2">© 2024 QuantiX 成績分析アプリ</Typography>
-      </footer>
     </div>
   );
 };

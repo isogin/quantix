@@ -87,16 +87,16 @@ const DataOverviewScreen: React.FC = () => {
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
             <DynamicGradientShape
-              position={[-3,-2,3]}
+              position={[-1.2,-1.75,3]}
               shapeType={1}
             />
             <DynamicGradientShape
-              position={[3,2,1]}
-              shapeType={3}
+              position={[1.5,1.75,1]}
+              shapeType={2}
             />
             <DynamicGradientShape
-              position={[3,-1,3]}
-              shapeType={5}
+              position={[1.25,-2,3]}
+              shapeType={3}
             />
           </Canvas>
         </div>
@@ -140,10 +140,6 @@ const DataOverviewScreen: React.FC = () => {
           </div>
         </Container>
       </main>
-
-      <footer className="bg-blue-600 text-white text-center p-4 z-0">
-        <Typography variant="body2">© 2024 QuantiX 成績分析アプリ</Typography>
-      </footer>
     </div>
   );
 };

@@ -32,11 +32,11 @@ const RotatingWireframeCube: React.FC<RotatingWireframeCubeProps> = ({ position,
   // 回転と大きさの変化を管理
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.x += 0.01;
-      meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.x += 0.001;
+      meshRef.current.rotation.y += 0.001;
 
       // スケールの変更（0.5〜1.5の間で動的に変化）
-      const newScale = 1 + Math.sin(Date.now() / 500) * 0.25;
+      const newScale = 1 + Math.sin(Date.now() / 500) * 0.05;
       setScale(newScale);
       meshRef.current.scale.set(newScale, newScale, newScale);
     }
@@ -48,12 +48,8 @@ const RotatingWireframeCube: React.FC<RotatingWireframeCubeProps> = ({ position,
       case 1:
         return <tetrahedronGeometry args={[1, 0]} />;  // 四面体
       case 2:
-        return <dodecahedronGeometry args={[1, 0]} />;  // 十二面体
-      case 3:
         return <boxGeometry args={[1, 1, 1]} />;  // キューブ型
-      case 4:
-        return <torusGeometry args={[1, 0.4, 16, 100]} />;  // トーラス
-      case 5:
+      case 3:
         return <icosahedronGeometry args={[1, 0]} />;  // 二十面体
       default:
         return <boxGeometry args={[1, 1, 1]} />;  // デフォルトはキューブ型

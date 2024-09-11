@@ -38,15 +38,15 @@ const ProblemSettingScreen: React.FC = () => {
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} />
             <RotatingWireframeCube
-              position={[-2,-2,3]}
+              position={[-1,-2,3]}
               shapeType={1}
             />
             <RotatingWireframeCube
-              position={[3,2,1]}
+              position={[1.5,1.5,1]}
               shapeType={3}
             />
             <RotatingWireframeCube
-              position={[3,-1,3]}
+              position={[1.5,-1.75,3]}
               shapeType={5}
             />
           </Canvas>
@@ -59,7 +59,7 @@ const ProblemSettingScreen: React.FC = () => {
           <Typography variant="body1" className="mb-8 text-gray-600">
             今学期、数学の平均成績が前学期よりも6.5点低下しました。<br />
             そこで各種勉強にまつわるデータを取得しました。 <br />
-            この原因を見つけ出し、改善策を提案しましょう。 <br />
+            データをもとに、この原因を突き止め、改善につなげましょう。 <br />
           </Typography>
           <Typography variant="body2" className="mb-8 text-gray-500 pt-4">
             分析の流れ: <br />
@@ -78,13 +78,6 @@ const ProblemSettingScreen: React.FC = () => {
           </div>
         </Container>
       </main>
-
-      {/* フッター */}
-      <footer className="bg-blue-600 text-white text-center p-4 z-10@">
-        <Typography variant="body2">
-          © 2024 QuantiX 成績分析アプリ
-        </Typography>
-      </footer>
     </div>
   );
 };
