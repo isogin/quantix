@@ -15,7 +15,7 @@ QuantiXは、データ分析を通じて学生の成績パフォーマンスを�
 
 ## デモ
 
-[デモを試す](#) <!-- (https://quantix-e8wffmt8p-itoyamatos-projects.vercel.app/) -->
+[デモを試す](#) <!--https://quantix-e8wffmt8p-itoyamatos-projects.vercel.app/-->
 
 ## インストールと使用方法
 
