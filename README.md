@@ -13,9 +13,9 @@ QuantiXは、データ分析を通じて学生の成績パフォーマンスを�
 - **カスタマイズ可能なデータ視覚化**: 選択したデータに基づいてグラフや度数分布表を生成。
 - **3D背景**: 魅力的な3Dアニメーションを背景に設定し、ユーザーエクスペリエンスを向上。
 
-## デモ
+## アプリの公開
 
-[デモを試す](https://quantix-e8wffmt8p-itoyamatos-projects.vercel.app/)
+[アプリを開く](https://quantix-e8wffmt8p-itoyamatos-projects.vercel.app/)
 
 ## インストールと使用方法
 
